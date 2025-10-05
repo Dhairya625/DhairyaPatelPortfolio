@@ -168,7 +168,7 @@ const SkillsPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <h1 
-                ref={animatedHeadingRef}
+                ref={animatedHeadingRef as React.RefObject<HTMLHeadingElement>}
                 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tighter text-white leading-[0.9] mb-8"
               >
                 Skills & Expertise

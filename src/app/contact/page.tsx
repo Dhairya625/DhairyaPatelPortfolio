@@ -144,7 +144,7 @@ const ContactPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
                 <h1 
-                  ref={animatedHeadingRef}
+                  ref={animatedHeadingRef as React.RefObject<HTMLHeadingElement>}
                   className="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter text-white leading-[0.9] mb-8"
                 >
                   Let's Create Something

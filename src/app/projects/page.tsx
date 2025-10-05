@@ -128,7 +128,7 @@ const ProjectsPreview = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
             <div>
                 <h2 
-                  ref={animatedHeadingRef}
+                  ref={animatedHeadingRef as React.RefObject<HTMLHeadingElement>}
                   className="text-5xl md:text-6xl xl:text-6xl font-bold tracking-tighter text-white leading-[0.9]"
                 >
                   Featured Projects

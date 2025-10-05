@@ -22,7 +22,7 @@ const About = () => {
     hoverColor: '#4472ca',
     addGlow: true,
     adjacentStagger: 0.12,
-  })
+  }) as React.RefObject<HTMLHeadingElement>
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -71,7 +71,7 @@ const About = () => {
             ease: 'power1.inOut',
             snap: { textContent: 1 },
             onUpdate: function () {
-              stat.textContent = Math.ceil(this.targets()[0].textContent)
+              stat.textContent = Math.ceil(this.targets()[0].textContent).toString()
             },
           })
         })
@@ -129,7 +129,7 @@ const About = () => {
           </div>
 
           <h2 
-            ref={animatedHeadingRef}
+            ref={animatedHeadingRef as React.RefObject<HTMLHeadingElement>}
             className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tighter text-white leading-[0.9]"
           >
             Building Digital Excellence
