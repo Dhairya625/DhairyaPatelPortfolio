@@ -115,7 +115,7 @@ export const useHeadingAnimation = (
       
       // Prevent text selection for better UX
       span.style.userSelect = 'none'
-      span.style.WebkitUserSelect = 'none'
+      span.style.webkitUserSelect = 'none'
       
       span.dataset.index = String(index)
       
