@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Navigation from '@/components/Navigation'
 import CustomCursor from '@/components/CustomCursor'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata: Metadata = {
   title: 'Dhairya Himanshu Patel | Computer Science Student & Developer',
@@ -37,6 +38,7 @@ export default function RootLayout({
         <main className="relative">
           {children}
         </main>
+        <Analytics />
       </body>
     </html>
   )
