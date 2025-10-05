@@ -185,7 +185,7 @@ const Hero = () => {
                   cooldownTime={0.5}
                   className="w-full"
                   textClassName="font-bold text-6xl md:text-7xl xl:text-8xl bg-clip-text text-white tracking-tighter"
-                  style={{ fontFamily: 'Newake, cursive' }}
+                  style={{ fontFamily: '"Archivo Black", "Space Grotesk", sans-serif' }}
                 />
               </div>
 
