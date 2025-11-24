@@ -79,9 +79,18 @@ const ContactPage = () => {
         body: JSON.stringify(formData),
       })
 
-      const data = await response.json()
+      // Check if response is JSON
+      let data
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json()
+      } else {
+        const text = await response.text()
+        throw new Error(text || 'Failed to send message')
+      }
 
       if (!response.ok) {
+        console.error('API Error:', data)
         throw new Error(data.error || 'Failed to send message')
       }
 

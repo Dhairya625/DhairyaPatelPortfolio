@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Navigation from '@/components/Navigation'
 import CustomCursor from '@/components/CustomCursor'
 import { Analytics } from '@vercel/analytics/react'
@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     description: 'Computer Science Engineering student with expertise in MERN stack development and AI/ML.',
     type: 'website',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({

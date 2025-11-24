@@ -39,9 +39,12 @@ export async function POST(request: NextRequest) {
     // Get recipient email from environment variable or use default
     const recipientEmail = process.env.CONTACT_EMAIL || 'pateldhairya64@gmail.com'
 
+    // Get the "from" email - use environment variable or default to Resend's test domain
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'
+    
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', // You'll need to verify your domain with Resend
+      from: `Portfolio Contact <${fromEmail}>`,
       to: [recipientEmail],
       replyTo: email,
       subject: `Portfolio Contact: ${subject}`,
@@ -92,9 +95,14 @@ This email was sent from your portfolio contact form.
     })
 
     if (error) {
-      console.error('Resend error:', error)
+      console.error('Resend error:', JSON.stringify(error, null, 2))
+      // Return more detailed error message for debugging
+      const errorMessage = error.message || 'Failed to send email. Please try again later.'
       return NextResponse.json(
-        { error: 'Failed to send email. Please try again later.' },
+        { 
+          error: errorMessage,
+          details: process.env.NODE_ENV === 'development' ? error : undefined
+        },
         { status: 500 }
       )
     }
@@ -109,8 +117,12 @@ This email was sent from your portfolio contact form.
     )
   } catch (error) {
     console.error('Contact API error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     return NextResponse.json(
-      { error: 'Internal server error. Please try again later.' },
+      { 
+        error: 'Internal server error. Please try again later.',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     )
   }

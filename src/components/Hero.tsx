@@ -153,44 +153,44 @@ const Hero = () => {
           <img 
             src="/port.jpg"
             alt="Background"
-            className="w-3/4 h-3/4 object-contain rounded-2xl"
+            className="w-full h-full sm:w-3/4 sm:h-3/4 object-contain rounded-lg sm:rounded-2xl px-4 sm:px-0"
             style={{
               filter: 'brightness(1) contrast(1.1)'
             }}
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 w-full">
           {/* Main Content Layout */}
-          <div className="flex items-center justify-center min-h-screen py-20">
+          <div className="flex items-center justify-center min-h-screen py-12 sm:py-20">
             {/* Content */}
-            <div className="w-full max-w-4xl space-y-12 text-center">
+            <div className="w-full max-w-4xl space-y-6 sm:space-y-12 text-center">
               {/* Eyebrow */}
-              <div className="flex items-center justify-center gap-4 opacity-60">
-                <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-white" />
-                <span className="text-xs tracking-[0.3em] uppercase text-gray-400 font-light">
+              <div className="flex items-center justify-center gap-2 sm:gap-4 opacity-60">
+                <div className="w-6 sm:w-12 h-[1px] bg-gradient-to-r from-transparent to-white" />
+                <span className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-400 font-light px-2">
                   Computer Science Engineer
                 </span>
-                <div className="w-12 h-[1px] bg-gradient-to-r from-white to-transparent" />
+                <div className="w-6 sm:w-12 h-[1px] bg-gradient-to-r from-white to-transparent" />
               </div>
 
 
 
 
               {/* Name at the bottom */}
-              <div className="pt-64">
+              <div className="pt-32 sm:pt-48 md:pt-64">
                 <GooeyText
                   texts={['DHAIRYA PATEL', 'DEVELOPER', 'DESIGNER', 'CREATOR']}
                   morphTime={2}
                   cooldownTime={0.5}
                   className="w-full"
-                  textClassName="font-bold text-6xl md:text-7xl xl:text-8xl bg-clip-text text-white tracking-tighter"
+                  textClassName="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl bg-clip-text text-white tracking-tighter px-4"
                   style={{ fontFamily: '"Archivo Black", "Space Grotesk", sans-serif' }}
                 />
               </div>
 
               {/* Social Links - Minimalist */}
-              <div className="flex items-center justify-center gap-10 pt-8">
+              <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-10 pt-4 sm:pt-8 flex-wrap">
                 {[
                   { name: 'GitHub', href: 'https://github.com/Dhairya625' },
                   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/dhairya-patel-1482122b2/' },
@@ -199,7 +199,7 @@ const Hero = () => {
                   <a
                     key={social.name}
                     href={social.href}
-                    className="group text-xs tracking-widest uppercase text-gray-600 hover:text-white transition-colors duration-300"
+                    className="group text-[10px] sm:text-xs tracking-widest uppercase text-gray-600 hover:text-white transition-colors duration-300 py-2"
                   >
                     {social.name}
                     <div className="w-0 group-hover:w-full h-[1px] bg-white transition-all duration-500" />
@@ -214,11 +214,13 @@ const Hero = () => {
 
         {/* Bottom Info Bar */}
         <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-black/20 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-6 flex justify-between items-center text-xs tracking-wider uppercase text-gray-600">
-            <p>Based in India</p>
-            <p>Open to remote opportunities</p>
-            <p>© 2025</p>
-        </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4 sm:py-6">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 text-[10px] sm:text-xs tracking-wider uppercase text-gray-600">
+              <p>Based in India</p>
+              <p>Open to remote opportunities</p>
+              <p>© 2025</p>
+            </div>
+          </div>
       </div>
     </section>
 

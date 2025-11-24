@@ -143,7 +143,7 @@ const SkillsPage = () => {
   ]
 
   return (
-    <section ref={sectionRef} className="relative bg-[#0a0a0a] min-h-screen pt-32 pb-24 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-[#0a0a0a] min-h-screen pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 opacity-[0.015] z-0">
         <div
@@ -157,31 +157,31 @@ const SkillsPage = () => {
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-600/5 via-transparent to-transparent blur-3xl z-0" />
       <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-teal-600/5 via-transparent to-transparent blur-3xl z-0" />
 
-      <div className="relative max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 z-10">
+      <div className="relative max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-16 z-10">
         {/* Header */}
-        <div ref={headingRef} className="mb-24">
-          <div className="flex items-center gap-4 mb-6 opacity-60">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-white" />
-            <span className="text-xs tracking-[0.3em] uppercase text-gray-500 font-light">Technical Expertise</span>
+        <div ref={headingRef} className="mb-12 sm:mb-16 md:mb-24">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 opacity-60">
+            <div className="w-6 sm:w-12 h-[1px] bg-gradient-to-r from-transparent to-white" />
+            <span className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-500 font-light">Technical Expertise</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start">
             <div>
               <h1 
                 ref={animatedHeadingRef as React.RefObject<HTMLHeadingElement>}
-                className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tighter text-white leading-[0.9] mb-8"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter text-white leading-[0.9] mb-4 sm:mb-6 md:mb-8 px-2 sm:px-0"
               >
                 Skills & Expertise
               </h1>
 
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-[2px] bg-gradient-to-r from-blue-500 to-teal-500" />
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="w-12 sm:w-16 h-[2px] bg-gradient-to-r from-blue-500 to-teal-500" />
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-teal-500" />
               </div>
             </div>
 
             <div className="lg:pt-8">
-              <p className="text-lg text-gray-400 font-light leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-400 font-light leading-relaxed">
                 A comprehensive overview of my technical skills, tools, and technologies I work with to build modern, 
                 scalable web applications and innovative solutions.
               </p>
@@ -190,30 +190,30 @@ const SkillsPage = () => {
         </div>
 
         {/* Skills Categories */}
-        <div className="space-y-16 mb-24">
+        <div className="space-y-8 sm:space-y-12 md:space-y-16 mb-12 sm:mb-16 md:mb-24">
           {skillCategories.map((category, categoryIndex) => (
             <div key={category.title} className="skill-category">
-              <div className="mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <div className="mb-4 sm:mb-6 md:mb-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3">
                   {category.title}
                 </h3>
-                <p className="text-gray-400 font-light">
+                <p className="text-sm sm:text-base text-gray-400 font-light">
                   {category.description}
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skill.name} className="skill-item group">
-                    <div className="border border-white/10 p-6 bg-white/[0.01] hover:bg-white/[0.02] transition-all duration-500">
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-white font-light">{skill.name}</span>
+                    <div className="border border-white/10 p-4 sm:p-6 bg-white/[0.01] hover:bg-white/[0.02] transition-all duration-500">
+                      <div className="flex justify-between items-center mb-2 sm:mb-3">
+                        <span className="text-sm sm:text-base text-white font-light">{skill.name}</span>
                         <span className="text-xs text-gray-500">{skill.level}%</span>
                       </div>
                       
-                      <div className="w-full bg-white/5 rounded-full h-1 mb-2">
+                      <div className="w-full bg-white/5 rounded-full h-1 sm:h-1.5 mb-2">
                         <div 
-                          className="progress-bar bg-gradient-to-r from-blue-500 to-teal-500 h-1 rounded-full"
+                          className="progress-bar bg-gradient-to-r from-blue-500 to-teal-500 h-1 sm:h-1.5 rounded-full"
                           style={{ width: `${skill.level}%` }}
                         />
                       </div>
@@ -226,28 +226,28 @@ const SkillsPage = () => {
         </div>
 
         {/* Experience Timeline */}
-        <div className="mb-24">
-          <div className="flex items-center gap-4 mb-12">
-            <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
-            <h2 className="text-sm tracking-widest uppercase text-gray-600 font-light">
+        <div className="mb-12 sm:mb-16 md:mb-24">
+          <div className="flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
+            <div className="w-6 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
+            <h2 className="text-xs sm:text-sm tracking-widest uppercase text-gray-600 font-light">
               Professional Experience
             </h2>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {experience.map((exp, index) => (
-              <div key={index} className="skill-item group border-l-2 border-white/10 pl-8 pb-8 last:pb-0 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" />
+              <div key={index} className="skill-item group border-l-2 border-white/10 pl-4 sm:pl-6 md:pl-8 pb-6 sm:pb-8 last:pb-0 relative">
+                <div className="absolute -left-2 top-0 w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" />
                 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                   <div className="lg:col-span-1">
-                    <p className="text-xs tracking-widest uppercase text-gray-600 mb-2">{exp.period}</p>
-                    <h3 className="text-lg text-white font-bold mb-1">{exp.role}</h3>
-                    <p className="text-sm text-gray-400">{exp.company}</p>
+                    <p className="text-[10px] sm:text-xs tracking-widest uppercase text-gray-600 mb-1 sm:mb-2">{exp.period}</p>
+                    <h3 className="text-base sm:text-lg text-white font-bold mb-1">{exp.role}</h3>
+                    <p className="text-xs sm:text-sm text-gray-400">{exp.company}</p>
                   </div>
                   
                   <div className="lg:col-span-2">
-                    <p className="text-gray-300 font-light leading-relaxed mb-4">
+                    <p className="text-sm sm:text-base text-gray-300 font-light leading-relaxed mb-3 sm:mb-4">
                       {exp.description}
                     </p>
                     
@@ -255,7 +255,7 @@ const SkillsPage = () => {
                       {exp.technologies.map((tech) => (
                         <span 
                           key={tech}
-                          className="px-3 py-1 text-xs bg-white/[0.05] border border-white/10 text-gray-400 hover:text-white transition-colors duration-300"
+                          className="px-2 py-1 sm:px-3 sm:py-1 text-[10px] sm:text-xs bg-white/[0.05] border border-white/10 text-gray-400 hover:text-white transition-colors duration-300"
                         >
                           {tech}
                         </span>
@@ -269,32 +269,32 @@ const SkillsPage = () => {
         </div>
 
         {/* Certifications & Learning */}
-        <div className="border border-white/10 p-8 bg-white/[0.01]">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
-            <h2 className="text-sm tracking-widest uppercase text-gray-600 font-light">
+        <div className="border border-white/10 p-4 sm:p-6 md:p-8 bg-white/[0.01]">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
+            <div className="w-6 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
+            <h2 className="text-xs sm:text-sm tracking-widest uppercase text-gray-600 font-light">
               Continuous Learning
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-white font-bold mb-4">Currently Learning</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-400 font-light">• Advanced TypeScript patterns</li>
-                <li className="text-gray-400 font-light">• Microservices architecture</li>
-                <li className="text-gray-400 font-light">• Machine Learning integration</li>
-                <li className="text-gray-400 font-light">• Cloud deployment strategies</li>
+              <h3 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Currently Learning</h3>
+              <ul className="space-y-1.5 sm:space-y-2">
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Advanced TypeScript patterns</li>
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Microservices architecture</li>
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Machine Learning integration</li>
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Cloud deployment strategies</li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-white font-bold mb-4">Areas of Interest</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-400 font-light">• AI-powered web applications</li>
-                <li className="text-gray-400 font-light">• Performance optimization</li>
-                <li className="text-gray-400 font-light">• Accessibility best practices</li>
-                <li className="text-gray-400 font-light">• Modern development workflows</li>
+              <h3 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Areas of Interest</h3>
+              <ul className="space-y-1.5 sm:space-y-2">
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• AI-powered web applications</li>
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Performance optimization</li>
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Accessibility best practices</li>
+                <li className="text-xs sm:text-sm text-gray-400 font-light">• Modern development workflows</li>
               </ul>
             </div>
           </div>

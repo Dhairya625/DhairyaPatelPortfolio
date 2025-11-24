@@ -75,7 +75,7 @@ const Navigation = () => {
     <>
       {/* Background overlay when scrolled */}
       {isScrolled && (
-        <div className="fixed top-0 left-0 right-0 z-[999] h-24 bg-black/60 backdrop-blur-xl border-b border-white/5" />
+        <div className="fixed top-0 left-0 right-0 z-[999] h-20 md:h-24 bg-black/60 backdrop-blur-xl border-b border-white/5" />
       )}
 
       {/* BubbleMenu */}
@@ -91,7 +91,7 @@ const Navigation = () => {
           </div>
         }
         onMenuClick={handleMenuClick}
-        className="fixed top-8 left-8 right-8 z-[1000]"
+        className="fixed top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 z-[1000]"
         menuBg="#000000"
         menuContentColor="#ffffff"
         useFixedPosition={true}
@@ -103,11 +103,13 @@ const Navigation = () => {
 
       {/* Time/Location Display */}
       {isScrolled && (
-        <div className="fixed top-24 left-0 right-0 z-[998] border-b border-white/5 bg-black/40 backdrop-blur-sm">
-          <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-2 flex justify-between items-center text-[10px] tracking-wider uppercase text-gray-600">
-            <span>IST — {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
-            <span>Based in India</span>
-            <span>Available for projects</span>
+        <div className="fixed top-20 md:top-24 left-0 right-0 z-[998] border-b border-white/5 bg-black/40 backdrop-blur-sm">
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-16 py-2">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 text-[10px] tracking-wider uppercase text-gray-600">
+              <span>IST — {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
+              <span>Based in India</span>
+              <span>Available for projects</span>
+            </div>
           </div>
         </div>
       )}

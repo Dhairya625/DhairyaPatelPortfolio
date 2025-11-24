@@ -5,8 +5,27 @@ import { useEffect, useState } from 'react'
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [cursorVariant, setCursorVariant] = useState('default')
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
 
   useEffect(() => {
+    // Detect if device supports touch
+    const checkTouchDevice = () => {
+      return (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        // @ts-ignore
+        (navigator.msMaxTouchPoints && navigator.msMaxTouchPoints > 0)
+      )
+    }
+
+    const touchDevice = checkTouchDevice()
+    setIsTouchDevice(touchDevice)
+
+    // Only add mouse event listeners if not a touch device
+    if (touchDevice) {
+      return
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
@@ -40,6 +59,11 @@ const CustomCursor = () => {
       window.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [])
+
+  // Don't render cursor on touch devices
+  if (isTouchDevice) {
+    return null
+  }
 
   return (
     <>

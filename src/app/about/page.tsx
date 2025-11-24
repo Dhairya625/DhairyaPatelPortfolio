@@ -107,7 +107,7 @@ const About = () => {
   ]
 
   return (
-    <section ref={sectionRef} className="relative bg-[#0a0a0a] py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-[#0a0a0a] py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div
@@ -120,32 +120,32 @@ const About = () => {
 
       <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-600/5 via-transparent to-transparent blur-3xl" />
 
-      <div className="relative max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16">
+      <div className="relative max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-16">
         {/* Section Header */}
-        <div ref={headingRef} className="mb-24">
-          <div className="flex items-center gap-4 mb-6 opacity-60">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-white" />
-            <span className="text-xs tracking-[0.3em] uppercase text-gray-500 font-light">About</span>
+        <div ref={headingRef} className="mb-12 sm:mb-16 md:mb-24">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 opacity-60">
+            <div className="w-6 sm:w-12 h-[1px] bg-gradient-to-r from-transparent to-white" />
+            <span className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-500 font-light">About</span>
           </div>
 
           <h2 
             ref={animatedHeadingRef as React.RefObject<HTMLHeadingElement>}
-            className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tighter text-white leading-[0.9]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter text-white leading-[0.9] px-2 sm:px-0"
           >
             Building Digital Excellence
           </h2>
 
-          <div className="flex items-center gap-4 mt-8">
-            <div className="w-16 h-[2px] bg-gradient-to-r from-blue-500 to-teal-500" />
+          <div className="flex items-center gap-2 sm:gap-4 mt-4 sm:mt-8">
+            <div className="w-12 sm:w-16 h-[2px] bg-gradient-to-r from-blue-500 to-teal-500" />
             <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-teal-500" />
           </div>
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-24 mb-16 sm:mb-24 md:mb-32">
           {/* Left Column - Image */}
           <div className="lg:col-span-5">
-            <div ref={imageRef} className="sticky top-32">
+            <div ref={imageRef} className="lg:sticky lg:top-32">
               <CometCard 
                 rotateDepth={12}
                 translateDepth={15}
@@ -232,17 +232,17 @@ const About = () => {
           </div>
 
           {/* Right Column - Content */}
-          <div ref={contentRef} className="lg:col-span-7 space-y-16">
+          <div ref={contentRef} className="lg:col-span-7 space-y-8 sm:space-y-12 md:space-y-16">
             {/* Introduction */}
-            <div className="content-block space-y-6">
-              <p className="text-xl md:text-2xl text-gray-400 font-light leading-relaxed">
+            <div className="content-block space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 font-light leading-relaxed">
                 A Computer Science Engineering student at{' '}
                 <span className="text-white">Parul University</span> with deep expertise in{' '}
                 <span className="text-white">full-stack development</span> and emerging{' '}
                 <span className="text-white">AI/ML technologies</span>.
               </p>
 
-              <p className="text-base md:text-lg text-gray-500 font-light leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-gray-500 font-light leading-relaxed">
                 My journey began with curiosity about how digital products shape user experiences. 
                 Through rigorous self-learning and a professional internship at{' '}
                 <span className="text-gray-400">Minimal Dot Technologies</span>, I've honed my 
@@ -261,13 +261,13 @@ const About = () => {
 
 
             {/* Expertise Grid */}
-            <div className="content-block space-y-8">
-              <div className="flex items-center gap-4">
-                <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
-                <h3 className="text-sm tracking-widest uppercase text-gray-600 font-light">Technical Expertise</h3>
+            <div className="content-block space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="w-6 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
+                <h3 className="text-xs sm:text-sm tracking-widest uppercase text-gray-600 font-light">Technical Expertise</h3>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 {expertise.map((item, idx) => (
                   <div
                     key={item.category}
@@ -319,17 +319,17 @@ const About = () => {
         </div>
 
         {/* Timeline Section */}
-        <div className="border-t border-white/10 pt-24">
-          <div className="flex items-center gap-4 mb-16">
-            <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
-            <h3 className="text-sm tracking-widest uppercase text-gray-600 font-light">Journey Timeline</h3>
+        <div className="border-t border-white/10 pt-12 sm:pt-16 md:pt-24">
+          <div className="flex items-center gap-2 sm:gap-4 mb-8 sm:mb-12 md:mb-16">
+            <div className="w-6 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-white/20" />
+            <h3 className="text-xs sm:text-sm tracking-widest uppercase text-gray-600 font-light">Journey Timeline</h3>
           </div>
 
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/20 to-transparent hidden md:block" />
 
-            <div className="space-y-12 md:pl-16">
+            <div className="space-y-8 sm:space-y-10 md:space-y-12 md:pl-16">
               {timeline.map((item, idx) => (
                 <div
                   key={item.year}
@@ -343,16 +343,16 @@ const About = () => {
                     )}
                   </div>
 
-                  <div className="flex flex-col md:flex-row md:items-start gap-6">
+                  <div className="flex flex-col md:flex-row md:items-start gap-4 sm:gap-6">
                     <div className="md:w-24 flex-shrink-0">
-                      <span className="text-3xl font-light text-white/40 group-hover:text-white transition-colors duration-300">
+                      <span className="text-2xl sm:text-3xl font-light text-white/40 group-hover:text-white transition-colors duration-300">
                         {item.year}
                       </span>
                     </div>
 
-                    <div className="flex-1 pb-8 border-b border-white/5">
-                      <h4 className="text-xl text-white font-bold mb-2">{item.title}</h4>
-                      <p className="text-sm text-gray-500 font-light">{item.description}</p>
+                    <div className="flex-1 pb-6 sm:pb-8 border-b border-white/5">
+                      <h4 className="text-lg sm:text-xl text-white font-bold mb-2">{item.title}</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 font-light">{item.description}</p>
                     </div>
                   </div>
                 </div>
@@ -362,19 +362,19 @@ const About = () => {
         </div>
 
         {/* Closing Statement */}
-        <div className="mt-32 text-center max-w-3xl mx-auto">
-          <p className="text-2xl md:text-3xl text-gray-400 font-light leading-relaxed mb-8">
+        <div className="mt-16 sm:mt-24 md:mt-32 text-center max-w-3xl mx-auto px-4 sm:px-0">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-400 font-light leading-relaxed mb-6 sm:mb-8">
             Currently seeking opportunities to collaborate on innovative projects that push the boundaries 
             of web technology and create meaningful user experiences.
           </p>
 
           <a
             href="/contact"
-            className="inline-flex items-center gap-3 text-sm tracking-widest uppercase text-white group"
+            className="inline-flex items-center gap-2 sm:gap-3 text-xs sm:text-sm tracking-widest uppercase text-white group"
           >
             <span>Let's Work Together</span>
             <svg
-              className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300"
+              className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
