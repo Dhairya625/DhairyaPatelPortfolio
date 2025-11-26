@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -12,8 +12,10 @@ const ProjectsPreview = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const headingRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+  const [showModal, setShowModal] = useState<number | null>(null)
   const animatedHeadingRef = useHeadingAnimation({
     animationType: 'varied',
     duration: 2.0,
@@ -45,6 +47,55 @@ const ProjectsPreview = () => {
     return () => ctx.revert()
   }, [])
 
+  const closeModal = useCallback(() => {
+    if (modalRef.current) {
+      gsap.to(modalRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 20,
+        duration: 0.2,
+        ease: 'power2.in',
+        onComplete: () => setShowModal(null)
+      })
+    } else {
+      setShowModal(null)
+    }
+  }, [])
+
+  const handleProjectClick = (e: React.MouseEvent, project: typeof projects[0]) => {
+    if (project.showModal) {
+      e.preventDefault()
+      setShowModal(project.id)
+    }
+  }
+
+  useEffect(() => {
+    if (showModal && modalRef.current) {
+      gsap.fromTo(modalRef.current, 
+        { opacity: 0, scale: 0.9, y: 20 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: 'back.out(1.7)' }
+      )
+    }
+  }, [showModal])
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showModal) {
+        closeModal()
+      }
+    }
+
+    if (showModal) {
+      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [showModal, closeModal])
+
   const projects = [
     {
       id: 1,
@@ -56,6 +107,7 @@ const ProjectsPreview = () => {
       technologies: ['React.js', 'Node.js', 'MongoDB', 'AI/ML'],
       link: '/projects/wedtech',
       metrics: { users: '1.2K+', satisfaction: '95%' },
+      showModal: true,
     },
     {
       id: 2,
@@ -67,6 +119,7 @@ const ProjectsPreview = () => {
       technologies: ['Python', 'TensorFlow', 'React.js', 'FastAPI'],
       link: '/projects/smartschedule',
       metrics: { accuracy: '98%', timeSaved: '75%' },
+      showModal: true,
     },
     {
       id: 3,
@@ -76,7 +129,7 @@ const ProjectsPreview = () => {
       year: '2023',
       role: 'Lead Developer',
       technologies: ['Next.js', 'WebSocket', 'PostgreSQL', 'Redis'],
-      link: '/projects/codecrate',
+      link: 'https://github.com/Dhairya625/CodecrateGit',
       metrics: { users: '800+', engagement: '4.5h avg' },
     },
     {
@@ -145,14 +198,16 @@ const ProjectsPreview = () => {
 
         {/* Projects Grid */}
         <div ref={projectsRef} className="space-y-12 sm:space-y-16 md:space-y-24 mb-16 sm:mb-24 md:mb-32">
-          {projects.map((project, idx) => (
-            <Link
-              key={project.id}
-              href={project.link}
-              className="project-card group block"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
+          {projects.map((project, idx) => {
+            const isExternalLink = project.link.startsWith('http')
+            const commonProps = {
+              className: "project-card group block",
+              onMouseEnter: () => setHoveredProject(project.id),
+              onMouseLeave: () => setHoveredProject(null),
+              onClick: (e: React.MouseEvent) => handleProjectClick(e, project),
+            }
+            
+            const content = (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
                 {/* Image Column */}
                 <div className={`lg:col-span-7 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
@@ -238,8 +293,28 @@ const ProjectsPreview = () => {
                   </div>
                 </div>
               </div>
-            </Link>
-          ))}
+            )
+
+            return isExternalLink ? (
+              <a
+                key={project.id}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                {...commonProps}
+              >
+                {content}
+              </a>
+            ) : (
+              <Link
+                key={project.id}
+                href={project.link}
+                {...commonProps}
+              >
+                {content}
+              </Link>
+            )
+          })}
         </div>
 
         {/* Footer CTA */}
@@ -274,6 +349,74 @@ const ProjectsPreview = () => {
 
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+          
+          {/* Modal Content */}
+          <div
+            ref={modalRef}
+            className="relative z-10 max-w-md w-full bg-[#0a0a0a] border border-white/20 rounded-lg p-8 sm:p-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300"
+              aria-label="Close modal"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Modal Content */}
+            <div className="text-center">
+              <div className="mb-6">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500/20 to-teal-500/20 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-blue-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                  Repository Not Available
+                </h3>
+              </div>
+
+              <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
+                This was an internship project, so I am not ethically allowed to share the repository.
+              </p>
+
+              <p className="text-gray-400 text-sm leading-relaxed mb-8">
+                If you'd like to learn more about my work on this project, feel free to reach out!
+              </p>
+
+              <button
+                onClick={closeModal}
+                className="w-full px-6 py-3 border border-white/20 hover:border-white/40 text-white text-sm tracking-widest uppercase transition-colors duration-500"
+              >
+                Understood
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         .char-reveal {
